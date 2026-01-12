@@ -41,7 +41,7 @@ boundaryField
         value           uniform $omegaInlet;
     }
     
-    body
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
         type            omegaWallFunction;
         value           uniform $omegaInlet;
@@ -53,13 +53,13 @@ boundaryField
         value           uniform $omegaInlet;
     }
     
-    wheelFL
+    "(tyresFront|wheelsFront)"
     {
         type            omegaWallFunction;
         value           uniform $omegaInlet;
     }
     
-    wheelRL
+    "(tyresRear|wheelsRear)"
     {
         type            omegaWallFunction;
         value           uniform $omegaInlet;

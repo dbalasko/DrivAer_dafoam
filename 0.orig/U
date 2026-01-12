@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Uinlet          (40 0 0);
+Uinlet          (20 0 0);
 
 dimensions      [0 1 -1 0 0 0 0];
 
@@ -39,7 +39,7 @@ boundaryField
         type            noSlip;
     }
     
-    body
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear|tyresFront|tyresRear|wheelsFront|wheelsRear)"
     {
     	type		noSlip;
     }
@@ -49,7 +49,7 @@ boundaryField
     	type		noSlip;
     }
     
-    wheelFL
+/*    tyresFront
     {
 	type		rotatingWallVelocity;
 	origin		(25.936 0.287 0.972);
@@ -57,13 +57,13 @@ boundaryField
 	omega 		119.4;
     } 
     
-    wheelRL
+    tyresRear
     {
 	type		rotatingWallVelocity;
 	origin		(28.901 0.287 0.972);
 	axis		(0 0 1);
 	omega 		119.4;
-    } 
+    } */
        
     symmetry
     {

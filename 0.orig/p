@@ -36,7 +36,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    body
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
         type            zeroGradient;
     }
@@ -46,12 +46,12 @@ boundaryField
         type            zeroGradient;
     }
     
-    wheelFL
+    "(tyresFront|wheelsFront)"
     {
     	type		zeroGradient;
     }
         
-    wheelRL
+    "(tyresRear|wheelsRear)"
     {
     	type		zeroGradient;
     }

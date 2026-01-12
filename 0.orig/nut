@@ -38,7 +38,7 @@ boundaryField
         value           uniform 0;
     }
     
-    body
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
         type            nutkWallFunction;
         value           uniform 0;
@@ -50,13 +50,13 @@ boundaryField
         value           uniform 0;
     }
     
-    wheelFL
+    "(tyresFront|wheelsFront)"
     {
         type            nutkWallFunction;
         value           uniform 0;
     }
     
-    wheelRL
+    "(tyresRear|wheelsRear)"
     {
         type            nutkWallFunction;
         value           uniform 0;

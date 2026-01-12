@@ -41,7 +41,7 @@ boundaryField
         value           uniform $kInlet;
     }
     
-    body
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
         type            kqRWallFunction;
         value           uniform $kInlet;
@@ -53,13 +53,13 @@ boundaryField
         value           uniform $kInlet;
     }
     
-    wheelFL
+    "(tyresFront|wheelsFront)"
     {
         type            kqRWallFunction;
         value           uniform $kInlet;
     }
     
-    wheelRL
+    "(tyresRear|wheelsRear)"
     {
         type            kqRWallFunction;
         value           uniform $kInlet;
