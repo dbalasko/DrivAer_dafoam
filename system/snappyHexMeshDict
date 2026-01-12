@@ -23,107 +23,75 @@ geometry
     body.stl
     {
         type triSurfaceMesh;
-
 	name body;
-
-	//scale 0.001;
     }
     
     fastback.stl
     {
         type triSurfaceMesh;
 	name optSurface;
-
-	//scale 0.001;
     }
     
     front_intakes.stl
     {
         type triSurfaceMesh;
-
 	name frontIntakes;
-
-	//scale 0.001;
     }
     
     lights_front.stl
     {
 
 	type triSurfaceMesh;
-
 	name lightsFront;
-
-	//scale 0.001;
     }
 
     Mirror_stripe.stl
     {
 
 	type triSurfaceMesh;
-
         name mirrorStripe;
-
-	//scale 0.001;
     }
 
     Mirrors.stl
     {
 
 	type triSurfaceMesh;
-
 	name 	mirrors;
-
-	//scale 0.001;
     }
 
     tyres_fr.stl
     {
 
         type triSurfaceMesh;
-
         name    tyresFront;
-
-        //scale 0.001;
     }
 
     tyres_rear.stl
     {
 
         type triSurfaceMesh;
-
         name    tyresRear;
-
-        //scale 0.001;
     }
     
     wheels_fr.stl
     {
 
         type triSurfaceMesh;
-
         name    wheelsFront;
-
-        //scale 0.001;
     }
 
     wheels_rear.stl
     {
 
         type triSurfaceMesh;
-
         name    wheelsRear;
-
-        //scale 0.001;
     }
 
     Underbody_Smooth.stl
     {
 
         type triSurfaceMesh;
-
         name    underbody;
-
-        //scale 0.001;
     }
 
 
@@ -131,33 +99,27 @@ geometry
     {
 
         type triSurfaceMesh;
-
         name    windowsFront;
-
-        //scale 0.001;
     }
 
     windows_rear.stl
     {
 
         type triSurfaceMesh;
-
         name    windowsRear;
-
-        //scale 0.001;
     }
     
     box1
     {
     	type searchableBox;
-        min (-10.5 -0.5 0);
+        min (-5 -0.5 0);
         max (20 3 3);
    }
    
     box2
     {
     	type searchableBox;
-        min (-5 -0.5 0);
+        min (-2.5 -0.5 0);
         max (10 2 2);
    }
    
@@ -167,6 +129,20 @@ geometry
         min (-1 -0.5 0);
         max (5 1.5 1.2);
    }
+   
+   /*wheelBoxFront
+   {
+       	type searchableBox;
+        min (-0.4 -0.29 0.6);
+        max (0.4 -0.15 0.9);
+   }
+   
+  wheelBoxRear
+   {
+       	type searchableBox;
+        min (2.386 -0.29 0.6);
+        max (3.186 -0.15 0.9);
+   }*/
 };
 
 castellatedMeshControls
@@ -224,6 +200,13 @@ castellatedMeshControls
              mode inside;
              levels ((3 3));
        }
+       
+       /*"(wheelBoxFront|wheelBoxRear)"
+       {
+       	     mode inside;
+             levels ((6 6));
+       }*/
+      
     }
 
     locationInMesh	(15 1e-5 1e-5);
@@ -259,25 +242,12 @@ addLayersControls
     relativeSizes true;
     layers
     {
-        body
+        "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear|optSurface)"//|tyresFront|tyresRear|wheelsFront|wheelsRear)"
         {
-            nSurfaceLayers 0;
+            nSurfaceLayers 2;
         }
         
-        optSurface
-        {
-            nSurfaceLayers 0;
-        }
         
-        /*wheelFL
-        {
-            nSurfaceLayers 0;
-        }
-        
-        wheelRL
-        {
-            nSurfaceLayers 0;
-        }*/
     }
 
     expansionRatio 1.2;

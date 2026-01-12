@@ -39,7 +39,7 @@ boundaryField
         type            noSlip;
     }
     
-    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear|tyresFront|tyresRear|wheelsFront|wheelsRear)"
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
     	type		noSlip;
     }
@@ -49,21 +49,21 @@ boundaryField
     	type		noSlip;
     }
     
-/*    tyresFront
+    "(tyresFront|wheelsFront)"
     {
 	type		rotatingWallVelocity;
-	origin		(25.936 0.287 0.972);
+	origin		(0 0 1.410);
 	axis		(0 0 1);
-	omega 		119.4;
+	omega 		62.79;
     } 
     
-    tyresRear
+    "(tyresRear|wheelsRear)"
     {
 	type		rotatingWallVelocity;
-	origin		(28.901 0.287 0.972);
+	origin		(2.786 0 1.410);
 	axis		(0 0 1);
-	omega 		119.4;
-    } */
+	omega 		62.79;
+    }
        
     symmetry
     {
