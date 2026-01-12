@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tesla_simpleFoam
 Drag optimisation of a simplified Tesla model S with the DAFoam package
 
@@ -38,3 +39,6 @@ mpirun -np 4 python runScript.py 2>&1 | tee logOpt.txt
 - Mesher: snappyHexMesh
 - Domain: 75m × 6m × 5m wind tunnel (symmetry across centreline of car)
 
+=======
+# DrivAer_dafoam
+>>>>>>> cfac47df9f073386e7f2bf408f6de868c556ba54
