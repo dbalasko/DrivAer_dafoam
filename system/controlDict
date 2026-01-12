@@ -50,9 +50,17 @@ runTimeModifiable true;
 
 functions
 {
-	/*#includeFunc	residuals;
+	residuals
+    	{
+        type            residuals;
+        libs            (utilityFunctionObjects);
+        enabled         true;
+        writeControl    timeStep;
+        writeInterval   1;
+        fields          (p U k omega);
+    	}
 	
-    	wallShearStress
+    	/*wallShearStress
     	{
        	    type                wallShearStress;
        	    functionObjectLibs  ("libfieldFunctionObjects.so");
