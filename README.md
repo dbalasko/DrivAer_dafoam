@@ -1,44 +1,43 @@
-<<<<<<< HEAD
-# Tesla_simpleFoam
-Drag optimisation of a simplified Tesla model S with the DAFoam package
+# DrivAer DAFoam Case
 
-## Geometry Files
+CFD optimization case for the DrivAer reference vehicle geometry using DAFoam.
 
-Due to file size limitations, geometry files are hosted separately:
+## Prerequisites
 
-**Download:** [LRZ Link](https://syncandshare.lrz.de/getlink/fiJyvQSdnxBFL1h5bAwA6j/)
+- DAFoam (OpenFOAM v1812)
 
+## Geometry
 
-## Quick Start
+Download the DrivAer geometry from:
+https://syncandshare.lrz.de/getlink/fiWzvig1b2BhKK2YQQW3Cs/
+
+Place the geometry files in the appropriate directory before meshing. (constant/triSurface)
+
+## Usage
+
+### Mesh Generation
+
+Run the preprocessing script to generate the mesh:
+
 ```bash
-# 1. Clone repository
-git clone https://github.com/dbalasko/Tesla_simpleFoam.git
-cd Tesla_simpleFoam
+./preProcessing
+```
 
-# 2. Download geometry files from link above
-# Place them in constant/triSurface
+### Running the Case
 
-# 3. Generate mesh
-./Allclean
-./preProcessing.sh
+After meshing is complete, run the optimization:
 
-# 4. Start docker for DAFoam
-docker run -it --rm -u dafoamuser --mount "type=bind,src=$(pwd),target=/home/dafoamuser/mount" -w /home/dafoamuser/mount dafoam/opt-packages:v4.0.3 bash
+```bash
+./runScript.sh
+```
 
-# 5. Create free-form deformation points
-python3 FFD/genFFD.py
-# Can use convert_ffd_to_vtk.py to generate a file which can be viewed in paraview (sanity check)
+## Case Description
 
-# 6. Run simulation
-mpirun -np 4 python runScript.py 2>&1 | tee logOpt.txt
+This case performs aerodynamic shape optimization on the DrivAer vehicle geometry using adjoint-based optimization methods provided by DAFoam.
 
+## TODOS
 
-## Case Details
-- Solver: DAsimpleFoam (steady-state RANS)
-- Turbulence: k-omega SST
-- Mesher: snappyHexMesh
-- Domain: 75m × 6m × 5m wind tunnel (symmetry across centreline of car)
-
-=======
-# DrivAer_dafoam
->>>>>>> cfac47df9f073386e7f2bf408f6de868c556ba54
+Check convergence with current mesh
+Check Y+ with current mesh
+Add inflation layers if needed
+Improve Mesh quality (maybe edge refinement...)
