@@ -6,19 +6,12 @@
 This repository contains an OpenFOAM case for aerodynamic simulation of the DrivAer reference vehicle geometry. The DrivAer model is a realistic open-source vehicle geometry developed by TU Munich for CFD validation studies.
 
 ## Configuration
-- **Vehicle Configuration**: DrivAer notchback/fastback/estateback
+- **Vehicle Configuration**: DrivAer fastback
 - **OpenFOAM Version**: 10
 - **Solver**: simpleFoam (steady-state RANS)
 - **Turbulence Model**: k-omega SST
 - **Reynolds Number**: ~5-7 million (based on vehicle length)
-- **Reference Velocity**: 30 m/s (108 km/h)
-
-## Prerequisites
-- OpenFOAM v10
-- ParaView (for visualization)
-- STL geometry file of DrivAer model
-- Minimum 16 GB RAM recommended
-- Parallel computing capability (4-32 cores)
+- **Reference Velocity**: 16 m/s
 
 ## Directory Structure
 ```
