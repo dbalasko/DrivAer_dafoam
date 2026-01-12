@@ -37,7 +37,7 @@ This case performs aerodynamic shape optimization on the DrivAer vehicle geometr
 
 ## TODOS
 
-Check convergence with current mesh
-Check Y+ with current mesh
-Add inflation layers if needed
-Improve Mesh quality (maybe edge refinement...)
+- Check convergence with current mesh
+- Check Y+ with current mesh
+- Add inflation layers if needed
+- Improve Mesh quality (maybe edge refinement...)
