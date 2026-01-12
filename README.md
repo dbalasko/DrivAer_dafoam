@@ -144,6 +144,3 @@ Compare results against experimental data:
 ## Author
 Dominik Balasko
 Technical University of Munich  
-
-## License
-Specify your license here (e.g., GPL-3.0 for OpenFOAM compatibility)
