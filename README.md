@@ -36,25 +36,6 @@ DrivAer/
 └── README.md
 ```
 
-## Geometry Setup
-
-### DrivAer STL Files
-Place the following STL files in `constant/triSurface/`:
-- `DrivAer_body.stl` - Main vehicle body
-- `DrivAer_wheels.stl` - Wheels (rotating)
-- `DrivAer_ground.stl` - Ground plane (moving wall)
-
-Ensure geometry is in meters and properly oriented (x: longitudinal, z: vertical).
-
-## Mesh Generation
-
-### Domain Size
-- **Upstream**: 2-3 vehicle lengths
-- **Downstream**: 8-10 vehicle lengths  
-- **Lateral**: 3-4 vehicle lengths
-- **Height**: 4-5 vehicle heights
-- **Ground clearance**: ~0.15 m (typical)
-
 ### Meshing with snappyHexMesh
 
 1. **Generate background mesh**:
@@ -67,21 +48,28 @@ blockMesh
 snappyHexMesh -overwrite
 ```
 
-### Target Mesh Quality
-- **Cell count**: 10-30 million cells
-- **Base cell size**: 0.1-0.2 m
-- **Surface refinement**: 5-7 levels
-- **Boundary layer**: 10-15 prism layers
-- **y+ target**: 30-100 (wall functions) or y+ < 1 (resolved)
-- **Expansion ratio**: 1.1-1.2
+3. **Run mesh and simulation using ./Allrun**:
+```bash
+./Allrun -c 4 -m M
+```
+This command would run the case on 4 cores with medium mesh (3M cells)
 
+options:
+  -c | -cores <nCores>   number of cores in parallel run
+  -h | -help             help
+  -m | -mesh <S|M|L|XL>  mesh size
+                         - S: small, 440k cells
+                         - M: medium, 3M cells (default)
+                         - L: large, 22.5M cells
+                         - XL: extra large, ~200M cells
+                         
 ## Boundary Conditions
 
 ### Typical Setup (`0/` directory)
 
 | Boundary | U | p | nut | k | omega |
 |----------|---|---|-----|---|-------|
-| inlet | fixedValue (30 m/s) | zeroGradient | calculated | fixedValue | fixedValue |
+| inlet | fixedValue (16 m/s) | zeroGradient | calculated | fixedValue | fixedValue |
 | outlet | zeroGradient | fixedValue (0) | calculated | zeroGradient | zeroGradient |
 | walls | movingWallVelocity | zeroGradient | nutkWallFunction | kqRWallFunction | omegaWallFunction |
 | vehicle | noSlip | zeroGradient | nutkWallFunction | kqRWallFunction | omegaWallFunction |
@@ -122,7 +110,7 @@ foamMonitor postProcessing/forces/0/forces.dat
 Forces are calculated using the `forces` function object. Reference values:
 - **Reference area**: Frontal area (~2.16 m² for DrivAer)
 - **Reference length**: Vehicle length (4.613 m)
-- **Reference velocity**: 30 m/s
+- **Reference velocity**: 16 m/s
 - **Reference density**: 1.225 kg/m³
 
 Expected **Cd** range: 0.23-0.30 (configuration dependent)
@@ -153,21 +141,6 @@ Compare results against experimental data:
 
 ## Troubleshooting
 
-### Common Issues
-
-**High residuals / divergence**:
-- Reduce relaxation factors in `system/fvSolution`
-- Check mesh quality with `checkMesh`
-- Verify boundary conditions
-
-**Poor boundary layer resolution**:
-- Increase number of prism layers
-- Adjust first layer thickness
-- Check y+ values: `yPlusRAS` or `yPlusLES`
-
-**Memory issues**:
-- Reduce cell count in snappyHexMeshDict
-- Use more cores for parallel decomposition
 
 ## References
 
@@ -176,9 +149,8 @@ Compare results against experimental data:
 3. DrivAer geometry: https://www.epc.ed.tum.de/en/aer/research-groups/automotive/drivaer/
 
 ## Author
-Dominik  
+Dominik Balasko
 Technical University of Munich  
-[Your contact information]
 
 ## License
 Specify your license here (e.g., GPL-3.0 for OpenFOAM compatibility)
