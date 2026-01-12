@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-bopdy.stl
+body.stl
 {
     extractionMethod    extractFromSurface;
 
