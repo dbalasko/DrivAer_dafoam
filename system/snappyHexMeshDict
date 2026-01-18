@@ -29,10 +29,16 @@ geometry
     fastback.stl
     {
         type triSurfaceMesh;
-	name optSurface;
+	name body;
+    }
+
+    fastback_optSurface.stl
+    {
+        type triSurfaceMesh;
+        name optSurface;
     }
     
-    front_intakes.stl
+    /*front_intakes.stl
     {
         type triSurfaceMesh;
 	name frontIntakes;
@@ -43,23 +49,23 @@ geometry
 
 	type triSurfaceMesh;
 	name lightsFront;
-    }
+    }*/
 
-    Mirror_stripe.stl
+    /*Mirror_stripe.stl
     {
 
 	type triSurfaceMesh;
         name mirrorStripe;
-    }
+    }*/
 
     Mirrors.stl
     {
 
 	type triSurfaceMesh;
-	name 	mirrors;
+	name 	body;
     }
 
-    tyres_fr.stl
+    /*tyres_fr.stl
     {
 
         type triSurfaceMesh;
@@ -92,42 +98,42 @@ geometry
 
         type triSurfaceMesh;
         name    underbody;
-    }
+    }*/
 
 
     windows.stl
     {
 
         type triSurfaceMesh;
-        name    windowsFront;
+        name    body;
     }
 
-    windows_rear.stl
+    /*windows_rear.stl
     {
 
         type triSurfaceMesh;
         name    windowsRear;
-    }
+    }*/
     
     box1
     {
     	type searchableBox;
         min (-5 -0.5 0);
-        max (20 3 3);
+        max (10 3 3);
    }
    
     box2
     {
     	type searchableBox;
         min (-2.5 -0.5 0);
-        max (10 2 2);
+        max (7 2 2);
    }
    
     box3
     {
     	type searchableBox;
         min (-1 -0.5 0);
-        max (5 1.5 1.2);
+        max (5 1.2 1.2);
    }
    
    /*wheelBoxFront
@@ -155,27 +161,96 @@ castellatedMeshControls
     
     features
     (
+     	{
+            file "body.eMesh";
+            level 6;  // Refinement level along edges
+        }
+
+	{
+            file "fastback.eMesh";
+            level 6;  // Refinement level along edges
+        }
+
+	{
+            file "fastback_optSurface.eMesh";
+            level 6;  // Refinement level along edges
+        }
+
+	/*{
+            file "front_intakes.eMesh";
+            level 5;  // Refinement level along edges
+        }
+
+	{
+            file "lights_front.eMesh";
+            level 5;  // Refinement level along edges
+        }*/
+
+	{
+            file "Mirrors.eMesh";
+            level 6;  // Refinement level along edges
+        }
+
+	/*{
+            file "Mirror_stripe.eMesh";
+            level 6;  // Refinement level along edges
+        }*/
+
+	/*{
+            file "tyres_fr.eMesh";
+            level 5;  // Refinement level along edges
+        }
+
+	{
+            file "tyres_rear.eMesh";
+            level 5;  // Refinement level along edges
+        }
+
+	{
+            file "Underbody_Smooth.eMesh";
+            level 5;  // Refinement level along edges
+        }
+
+	{
+            file "wheels_fr.eMesh";
+            level 5;  // Refinement level along edges
+        }
+
+	{
+            file "wheels_rear.eMesh";
+            level 5;  // Refinement level along edges
+        }*/
+
+	{
+            file "windows.eMesh";
+            level 6;  // Refinement level along edges
+        }
+
+	/*{
+            file "windows_rear.eMesh";
+            level 4;  // Refinement level along edges
+        }*/
     );
 
     refinementSurfaces
     {
-    body { level (4 5); patchInfo { type wall; } }
-    optSurface { level (4 5); patchInfo { type wall; } }
-    frontIntakes { level (5 6); patchInfo { type wall; } }
-    lightsFront { level (5 6); patchInfo { type wall; } }
-    mirrorStripe { level (6 6); patchInfo { type wall; } }
-    mirrors { level (5 6); patchInfo { type wall; } }
-    tyresFront { level (4 5); patchInfo { type wall; } }
+    body { level (5 5); patchInfo { type wall; } }
+    optSurface { level (5 6); patchInfo { type wall; } }
+    //frontIntakes { level (4 5); patchInfo { type wall; } }
+    //lightsFront { level (4 5); patchInfo { type wall; } }
+    //mirrorStripe { level (6 6); patchInfo { type wall; } }
+    //mirrors { level (5 6); patchInfo { type wall; } }
+    //tyresFront { level (5 5); patchInfo { type wall; } }
     
     // Replace wildcards with exact names:
-    tyresRear { level (4 5); patchInfo { type wall; } }
-    underbody { level (4 5); patchInfo { type wall; } }
+    //tyresRear { level (5 5); patchInfo { type wall; } }
+    //underbody { level (4 5); patchInfo { type wall; } }
     
-    wheelsFront { level (4 5); patchInfo { type wall; } }
-    wheelsRear { level (4 5); patchInfo { type wall; } }
+    //wheelsFront { level (4 5); patchInfo { type wall; } }
+    //wheelsRear { level (4 5); patchInfo { type wall; } }
     
-    windowsFront { level (4 5); patchInfo { type wall; } }
-    windowsRear { level (4 5); patchInfo { type wall; } }
+    //windowsFront { level (4 4); patchInfo { type wall; } }
+    //windowsRear { level (4 4); patchInfo { type wall; } }
     }
 
     resolveFeatureAngle 30;
@@ -242,9 +317,9 @@ addLayersControls
     relativeSizes true;
     layers
     {
-        "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear|optSurface)"//|tyresFront|tyresRear|wheelsFront|wheelsRear)"
+        "(body|fastback|mirrors|optSurface)"//|tyresFront|tyresRear|wheelsFront|wheelsRear)"
         {
-            nSurfaceLayers 2;
+            nSurfaceLayers 0;
         }
         
         
@@ -252,7 +327,7 @@ addLayersControls
 
     expansionRatio 1.2;
     finalLayerThickness 0.5;
-    minThickness 0.05;
+    minThickness 0.1;
     nGrow 0;
 
     // Advanced settings

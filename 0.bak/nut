@@ -7,53 +7,58 @@
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
-    version     2.0;
     format      ascii;
     class       volScalarField;
-    object      p;
+    object      nut;
+    version	2.0;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 1e-05;
 
 boundaryField
 {
     inlet
     {
-        type            zeroGradient;
+        type            calculated;
+        value           uniform 1e-05;
     }
 
     outlet
     {
-        type            fixedValue;
-        value           uniform 0;
+        type            zeroGradient;
     }
 
     wall
     {
-        type            zeroGradient;
+        type            nutUSpaldingWallFunction;
+        value           uniform 1e-05;
     }
-
-    body
+    
+    "(body|fastback|frontIntakes|lightsFront|mirrorStripe|mirrors|underbody|windowsFront|windowsRear)"
     {
-        type            zeroGradient;
+        type            nutUSpaldingWallFunction;
+        value           uniform 1e-05;
     }
     
     optSurface
     {
-        type            zeroGradient;
+        type            nutUSpaldingWallFunction;
+        value           uniform 1e-05;
     }
     
-    wheelFL
+    "(tyresFront|wheelsFront)"
     {
-    	type		zeroGradient;
+        type            nutUSpaldingWallFunction;
+        value           uniform 1e-05;
     }
-        
-    wheelRL
+    
+    "(tyresRear|wheelsRear)"
     {
-    	type		zeroGradient;
+        type            nutUSpaldingWallFunction;
+        value           uniform 1e-05;
     }
     
     symmetry

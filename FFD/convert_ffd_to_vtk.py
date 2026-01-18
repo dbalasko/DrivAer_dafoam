@@ -48,7 +48,7 @@ x, y, z = readPlot3D('teslaFFD.xyz')
 
 # Write VTK
 gridToVTK(
-    './FFD_grid',
+    './FFD_optSurface',
     x, y, z
 )
 

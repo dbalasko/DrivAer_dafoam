@@ -16,7 +16,7 @@ surfaceFeatureExtract #>> log.meshGeneration
 # Import tesla geometry & mesh in parallel
 decomposePar #>> log.meshGeneration
 ## foamJob -parallel -screen snappyHexMesh #>> log.meshGeneration
-mpirun -np 4 snappyHexMesh -parallel 
+mpirun -np 32 snappyHexMesh -parallel 
 reconstructParMesh -latestTime #>> log.meshGeneration
 echo "Reconstructed parallel mesh"
 

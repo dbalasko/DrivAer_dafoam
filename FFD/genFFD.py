@@ -5,95 +5,91 @@ def writeFFDFile(fileName,nBlocks,nx,ny,nz,points):
     '''
     Take in a set of points and write the plot 3dFile
     '''
-
     f = open(fileName,'w')
-
     f.write('%d\n'%nBlocks)
     for i in range(nBlocks):
         f.write('%d %d %d '%(nx[i],ny[i],nz[i]))
-    # end
     f.write('\n')
     for block in range(nBlocks):
         for k in range(nz[block]):
             for j in range(ny[block]):
                 for i in range(nx[block]):
                     f.write('%f '%points[block][i,j,k,0])
-                # end
-            # end
-        # end
         f.write('\n')
-
         for k in range(nz[block]):
             for j in range(ny[block]):
                 for i in range(nx[block]):
                     f.write('%f '%points[block][i,j,k,1])
-                # end
-            # end
-        # end
         f.write('\n')
-
         for k in range(nz[block]):
             for j in range(ny[block]):
                 for i in range(nx[block]):
                     f.write('%f '%points[block][i,j,k,2])
-                # end
-            # end
-        # end
-    # end
     f.close()
     return
 
 def returnBlockPoints(corners,nx,ny,nz):
     '''
     corners needs to be 8 x 3
+    Corner ordering:
+    0: xMin, yMin, zMin
+    1: xMax, yMin, zMin
+    2: xMax, yMin, zMax
+    3: xMin, yMin, zMax
+    4: xMin, yMax, zMin
+    5: xMax, yMax, zMin
+    6: xMax, yMax, zMax
+    7: xMin, yMax, zMax
     '''
     points = np.zeros([nx,ny,nz,3])
-
-    # points 1 - 4 are the iMin face
-    # points 5 - 8 are the iMax face
-
+    
     for idim in range(3):
-        edge1 = np.linspace(corners[0][idim],corners[4][idim],nx)
-        edge2 = np.linspace(corners[1][idim],corners[5][idim],nx)
-        edge3 = np.linspace(corners[2][idim],corners[6][idim],nx)
-        edge4 = np.linspace(corners[3][idim],corners[7][idim],nx)
-
-        for i in range(nx):
-            edge5 = np.linspace(edge1[i],edge3[i],ny)
-            edge6 = np.linspace(edge2[i],edge4[i],ny)
-            for j in range(ny):
-                edge7 = np.linspace(edge5[j],edge6[j],nz)
-                points[i,j,:,idim] = edge7
-            # end
-        # end
-    # end
-                
+        # Create edges in Z direction (at the 4 corners of bottom/top faces)
+        edge_yMin_xMin = np.linspace(corners[0][idim], corners[3][idim], nz)  # Bottom-left edge
+        edge_yMin_xMax = np.linspace(corners[1][idim], corners[2][idim], nz)  # Bottom-right edge
+        edge_yMax_xMin = np.linspace(corners[4][idim], corners[7][idim], nz)  # Top-left edge
+        edge_yMax_xMax = np.linspace(corners[5][idim], corners[6][idim], nz)  # Top-right edge
+        
+        for k in range(nz):
+            # For this Z position, interpolate in X direction at yMin and yMax
+            edge_yMin = np.linspace(edge_yMin_xMin[k], edge_yMin_xMax[k], nx)
+            edge_yMax = np.linspace(edge_yMax_xMin[k], edge_yMax_xMax[k], nx)
+            
+            for i in range(nx):
+                # For this X,Z position, interpolate in Y direction
+                edge_y = np.linspace(edge_yMin[i], edge_yMax[i], ny)
+                points[i,:,k,idim] = edge_y
+    
     return points
 
 ################ FFD ##############
 nBlocks = 1
-
-nx = [10]
-ny = [6]
-nz = [9]
-
+nx = [4]
+ny = [2]
+nz = [8]
 corners = np.zeros([nBlocks,8,3])
+xMin, yMin, zMin = 3.15274, 0.552999, 0.0
+xMax, yMax, zMax = 3.72563, 0.740217, 0.791668
+dx = xMax - xMin
+dy = yMax - yMin
+dz = zMax - zMin
+margin = 0.10
 
-corners[0,0,:] = [28.87,0.58,0.0]
-corners[0,1,:] = [28.87,0.58,1.02]
-corners[0,2,:] = [28.87,1.22,0.0]
-corners[0,3,:] = [28.87,1.22,1.02]
-corners[0,4,:] = [29.95,0.58,0.0]
-corners[0,5,:] = [29.95,0.58,1.02]
-corners[0,6,:] = [29.95,1.22,0.0]
-corners[0,7,:] = [29.95,1.22,1.02]
-
+corners[0,0,:] = [xMin - margin*dx, yMin - margin*dy, zMin - margin*dz]  # 0
+corners[0,1,:] = [xMax + margin*dx, yMin - margin*dy, zMin - margin*dz]  # 1
+corners[0,2,:] = [xMax + margin*dx, yMin - margin*dy, zMax + margin*dz]  # 2
+corners[0,3,:] = [xMin - margin*dx, yMin - margin*dy, zMax + margin*dz]  # 3
+corners[0,4,:] = [xMin - margin*dx, yMax + margin*dy, zMin - margin*dz]  # 4
+corners[0,5,:] = [xMax + margin*dx, yMax + margin*dy, zMin - margin*dz]  # 5
+corners[0,6,:] = [xMax + margin*dx, yMax + margin*dy, zMax + margin*dz]  # 6
+corners[0,7,:] = [xMin - margin*dx, yMax + margin*dy, zMax + margin*dz]  # 7
 
 points = []
 for block in range(nBlocks):
     points.append(returnBlockPoints(corners[block],nx[block],ny[block],nz[block]))
 
-#print points
-fileName = 'FFD/teslaFFD.xyz'
+fileName = 'teslaFFD.xyz'
 writeFFDFile(fileName,nBlocks,nx,ny,nz,points)
 
+print(f"FFD file written: {fileName}")
+print(f"Total points: {nx[0]} x {ny[0]} x {nz[0]} = {nx[0]*ny[0]*nz[0]}")

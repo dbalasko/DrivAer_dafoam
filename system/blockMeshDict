@@ -18,21 +18,21 @@ convertToMeters 1;
 
 vertices
 (
-    (-25  -0.29  0)    // 0
-    (50 -0.29  0)    // 1
-    (50 6  0)    // 2
-    (-25  6  0)    // 3
+    (-10  -0.29  0)    // 0
+    (30 -0.29  0)    // 1
+    (30 6  0)    // 2
+    (-10  6  0)    // 3
 
-    (-25  -0.29  5)    // 4
-    (50 -0.29  5)    // 5
-    (50 6  5)    // 6
-    (-25  6  5)    // 7
+    (-10  -0.29  8)    // 4
+    (30 -0.29  8)    // 5
+    (30 6  8)    // 6
+    (-10  6  8)    // 7
 );
 
 blocks
 (
     hex (0 1 2 3 4 5 6 7)
-    (225 18 15)
+    (90 18 15)
     simpleGrading (1 1 1)
 );
 
@@ -48,7 +48,7 @@ defaultPatch
 
 boundary
 (
-inlet
+    xMin
     {
         type inlet;
         faces
@@ -57,7 +57,7 @@ inlet
         );
     }
 
-    outlet
+    xMax
     {
         type outlet;
         faces
@@ -66,7 +66,7 @@ inlet
         );
     }
 
-    wall
+    yMin
     {
         type wall;
         faces
@@ -75,15 +75,31 @@ inlet
         );
     }
     
-    symmetry
+    yMax
     {
 	type symmetry;
 	faces
 	(	
-		(4 7 6 5)
         	(3 2 6 7)
-		(0 1 2 3)
 	);
+    }
+
+    zMin
+    {
+        type symmetry;
+        faces
+        (
+                (0 1 2 3)
+        );
+    }
+
+    zMax
+    {
+        type symmetry;
+        faces
+        (
+                (4 7 6 5)
+        );
     }
 );
 

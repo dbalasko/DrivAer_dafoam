@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-drivaer_combined.stl
+body.stl
 {
     extractionMethod    extractFromSurface;
 
@@ -30,26 +30,7 @@ drivaer_combined.stl
     // Write options
     writeFeatureEdgeMesh    yes;
     // Write features to obj format for postprocessing
-    writeObj                yes;
-}
-
-/*windtunnel.stl
-{
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        // Mark edges whose adjacent surface normals are at an angle less
-        // than includedAngle as features
-        // - 0  : selects no edges
-        // - 180: selects all edges
-        includedAngle   150;
-    }
-
-    // Write options
-    writeFeatureEdgeMesh    yes;
-    // Write features to obj format for postprocessing
-    writeObj                yes;
+    writeObj                yes
 }
 
 fastback.stl
@@ -88,7 +69,7 @@ fastback_optSurface.stl
     writeFeatureEdgeMesh    yes;
     // Write features to obj format for postprocessing
     writeObj                yes;
-}*/
+}
 
 /*front_intakes.stl
 {
