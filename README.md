@@ -2,6 +2,8 @@
 
 CFD optimization case for the DrivAer reference vehicle geometry using DAFoam.
 
+![Alt text](animation/Geometry.gif)
+
 ## Prerequisites
 
 - DAFoam (OpenFOAM v1812)
@@ -28,16 +30,12 @@ Run the preprocessing script to generate the mesh:
 After meshing is complete, run the optimization:
 
 ```bash
-./runScript.sh
+decomposePar
+
+mpirun -np 32 python runScript.py | tee log.txt
 ```
 
 ## Case Description
 
 This case performs aerodynamic shape optimization on the DrivAer vehicle geometry using adjoint-based optimization methods provided by DAFoam.
 
-## TODOS
-
-- Check convergence with current mesh
-- Check Y+ with current mesh
-- Add inflation layers if needed
-- Improve Mesh quality (maybe edge refinement...)
