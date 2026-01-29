@@ -50,9 +50,9 @@ drivaer_combined.stl
     writeFeatureEdgeMesh    yes;
     // Write features to obj format for postprocessing
     writeObj                yes;
-}
+}*/
 
-fastback.stl
+/*fastback.stl
 {
     extractionMethod    extractFromSurface;
 
@@ -149,7 +149,7 @@ lights_front.stl
     writeObj                yes;
 }*/
 
-Mirrors.stl
+/*Mirrors.stl
 {
     extractionMethod    extractFromSurface;
 
@@ -166,7 +166,7 @@ Mirrors.stl
     writeFeatureEdgeMesh    yes;
     // Write features to obj format for postprocessing
     writeObj                yes;
-}
+}*/
 
 /*tyres_fr.stl
 {
@@ -263,7 +263,7 @@ wheels_rear.stl
     writeObj                yes;
 }*/
 
-windows.stl
+/*windows.stl
 {
     extractionMethod    extractFromSurface;
 
@@ -280,7 +280,7 @@ windows.stl
     writeFeatureEdgeMesh    yes;
     // Write features to obj format for postprocessing
     writeObj                yes;
-}
+}*/
 
 /*windows_rear.stl
 {

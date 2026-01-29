@@ -29,7 +29,7 @@ geometry
     fastback.stl
     {
         type triSurfaceMesh;
-	name body;
+	name optSurface;
     }
 
     fastback_optSurface.stl
@@ -105,7 +105,7 @@ geometry
     {
 
         type triSurfaceMesh;
-        name    body;
+        name    optSurface;
     }
 
     /*windows_rear.stl

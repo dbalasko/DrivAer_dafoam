@@ -64,16 +64,16 @@ def returnBlockPoints(corners,nx,ny,nz):
 
 ################ FFD ##############
 nBlocks = 1
-nx = [4]
-ny = [2]
+nx = [8]
+ny = [6]
 nz = [8]
 corners = np.zeros([nBlocks,8,3])
-xMin, yMin, zMin = 3.15274, 0.552999, 0.0
-xMax, yMax, zMax = 3.72563, 0.740217, 0.791668
+xMin, yMin, zMin = 1.53, 0.552999, 0.0
+xMax, yMax, zMax = 3.72563, 1.0999, 0.858873
 dx = xMax - xMin
 dy = yMax - yMin
 dz = zMax - zMin
-margin = 0.10
+margin = 0.05
 
 corners[0,0,:] = [xMin - margin*dx, yMin - margin*dy, zMin - margin*dz]  # 0
 corners[0,1,:] = [xMax + margin*dx, yMin - margin*dy, zMin - margin*dz]  # 1
@@ -88,7 +88,7 @@ points = []
 for block in range(nBlocks):
     points.append(returnBlockPoints(corners[block],nx[block],ny[block],nz[block]))
 
-fileName = 'teslaFFD.xyz'
+fileName = 'FFD.xyz'
 writeFFDFile(fileName,nBlocks,nx,ny,nz,points)
 
 print(f"FFD file written: {fileName}")

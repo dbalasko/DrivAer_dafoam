@@ -59,7 +59,7 @@ localRefinement
     "body"
     {
         cellSize 0.02;
-	//refinementThickness 0.05;
+	refinementThickness 0.02;
     }
 
     // Refinement around wheels
@@ -74,18 +74,11 @@ localRefinement
 //        cellSize 0.1;
 //    }
 
-    // Explicitly disable refinement at box boundaries
-//    xMin { cellSize 0.5; }
-//    xMax { cellSize 0.5; }
-//    yMin { cellSize 0.5; }
-//   yMax { cellSize 0.5; }
-//    zMin { cellSize 0.5; }
-//    zMax { cellSize 0.5; }
 }
 
 edgeMeshRefinement
 {
-    // Refinement around car body
+    /*// Refinement around car body
     "body"
     {
     
@@ -93,7 +86,7 @@ edgeMeshRefinement
         additionalRefinementLevels	6;
 	//refinementThickness 0.02;
 	
-    }
+    }*/
     
     /*"wheelRL"
     {
